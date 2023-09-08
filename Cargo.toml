@@ -1,0 +1,23 @@
+[package]
+name = "password-hasher-rust"
+version = "0.1.0"
+edition = "2021"
+
+# https://github.com/rustwasm/wasm-pack/issues/1247
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = false
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+worker = "0.0.15"
+argon2 = "0.5.2"
+rand = "0.8.5"
+getrandom = { version = "0.2", features = ["js"] }
+serde = "1.0.188"
+
+[profile.release]
+lto = true
+strip = true
+codegen-units = 1
